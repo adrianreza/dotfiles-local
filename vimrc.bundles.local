@@ -1,0 +1,8 @@
+UnPlug 'Lokaltog/vim-powerline'
+UnPlug 'stephenmckinney/vim-solarized-powerline'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'klen/python-mode'

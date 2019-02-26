@@ -1,0 +1,182 @@
+# modify the prompt to contain git branch name if applicable
+#git_prompt_info() {
+#  current_branch=$(git current-branch 2> /dev/null)
+#  if [[ -n $current_branch ]]; then
+#    echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
+#  fi
+#}
+#setopt promptsubst
+#export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
+
+# load our own completion functions
+fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
+
+# completion
+autoload -U compinit
+compinit
+
+# makes color constants available
+autoload -U colors
+colors
+
+# enable colored output from ls, etc
+export CLICOLOR=1
+
+# history settings
+setopt hist_ignore_all_dups inc_append_history
+HISTFILE=~/.zhistory
+HISTSIZE=4096
+SAVEHIST=4096
+
+# awesome cd movements from zshkit
+setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
+DIRSTACKSIZE=5
+
+# Enable extended globbing
+setopt extendedglob
+
+# Allow [ or ] whereever you want
+unsetopt nomatch
+
+# vi mode
+bindkey -v
+bindkey "^F" vi-cmd-mode
+
+# handy keybindings
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^K" kill-line
+bindkey "^R" history-incremental-search-backward
+bindkey "^P" history-search-backward
+bindkey "^Y" accept-and-hold
+bindkey "^N" insert-last-word
+bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+
+# oh-my-zsh configs
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/adrianreza/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#ZSH_THEME="honukai"
+#ZSH_THEME="dracula"
+#ZSH_THEME="agnosterzak"
+#ZSH_THEME="lambda-mod"
+#ZSH_THEME="node"
+ZSH_THEME="ys"
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+ COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="dd.mm.yyyy"
+HISTCONTROL=ignoreboth
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+#plugins=(git sudo sublime command-not-found cp web-search node npm pip nvm gem rake rbenv bundler ruby python pyenv brew brew-cask zsh-syntax-highlighting git git-it-on git-extras github gitignore go golang heroku osx rails textmate lighthouse docker firewalld rsync svn tmux tmuxinator vagrant virtualenv virtualenvwrapper xcode zsh_reload zsh-navigation-tools)
+plugins=(adb autoenv aws bower brew bundler cakephp3 capistrano cloudapp colored-man-pages command-not-found common-aliases composer copydir copyfile cp dircycle dirhistory dirpersist django docker docker-compose emacs encode64 extract firewalld gem git git-extras git-flow git-flow-avh git-hubflow git-prompt git-remote-branch gitfast github gitignore gnu-utils go golang gradle grunt gulp heroku history history-substring-search kubectl laravel laravel4 laravel5 man ng nmap node npm nvm osx perl pip postgres pyenv python rails rake rbenv react-native rsync ruby screen ssh-agent sublime sudo supervisor svn svn-fast-info mux tmux-cssh tmuxinator torrent urltools vagrant vi-mode vim-interaction virtualenv virtualenvwrapperweb-search wp-cli xcode zsh_reload zsh-navigation-tools)
+#plugins=(adb ant asdf autoenv autojump autopep8 aws battery bbedit bgnotify bower branch brew bundler bwana cabal cake cakephp3 capistrano catimg celery chruby cloudapp codeclimate coffee colored-man-pages colorize command-not-found common-aliases compleat composer copydir copyfile cp cpanm dircycle dirhistory dirpersist django dnf docker docker-compose emacs ember-cli emoji emoji-clock emotty encode64 extract fabric fancy-ctrl-z fasd fbterm firewalld forklift frontend-search gas gb geeknote gem git git-extras git-flow git-flow-avh git-hubflow git-prompt git-remote-branch gitfast github gitignore glassfish gnu-utils go golang gradle grails grunt gulp heroku history history-substring-search httpie iwhois jake-node jhbuild jira jruby jsontools jump kate kitchen knife knife_ssh kubectl laravel laravel4 laravel5 last-working-dir lein lighthouse lol man marked2 mercurial meteor mix mix-fast mosh mvn n98-magerun nanoc ng nmap node npm nvm nyan osx pass paver pep8 per-directory-history perl perms phing pip pj pod postgres pow powder powify profiles pyenv pylint python rails rake rake-fast rand-quote rbenv rbfu react-native rebar redis-cli repo rsync ruby rust rvm safe-paste sbt scala scd screen scw shrink-path singlechar spring sprunge ssh-agent stack sublime sudo supervisor svn svn-fast-info symfony symfony2 systemadmin systemd taskwarrior terminalapp terminitor terraform textastic textmate thefuck themes thor tig tmux tmux-cssh tmuxinator torrent tugboat urltools vagrant vault vi-mode vim-interaction virtualenv virtualenvwrapper vundle wakeonlan wd web-search wp-cli xcode yii yii2 yum zeus zsh_reload zsh-navigation-tools)
+
+# User configuration
+
+export PATH="/usr/local/sbin:/Users/adrianreza/.rbenv/shims:/Users/adrianreza/Scripts:/Users/adrianreza/.bin:PATH=/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/adrianreza/.rvm/bin:/Users/adrianreza/.rvm/bin"
+export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PATH="$HOME/.bin:$PATH"
+
+# eval "$(rbenv init - zsh --no-rehash)"
+source $ZSH/oh-my-zsh.sh
+. `brew --prefix` /usr/local/etc/profile.d/z.sh
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='vim'
+ fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+# Example aliases
+
+PHP_AUTOCONF="$(which autoconf)"
+#export PATH="/usr/local/bin:$PATH"eval "$(rbenv init - --no-rehash zsh)"
+source /usr/local/share/zsh/site-functions/_aws
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+#. /Users/adrianreza/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/adrianreza/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/adrianreza/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/adrianreza/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/adrianreza/google-cloud-sdk/completion.zsh.inc'; fi
+. /Users/adrianreza/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/php@7.0/bin:$PATH"
+export PATH="/usr/local/opt/php@7.0/sbin:$PATH"
+export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+peek() { tmux split-window -p 33 $EDITOR $@ || exit; }
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
