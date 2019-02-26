@@ -1,6 +1,5 @@
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
-alias l="ls -lah"
 
 #php-fpm
 alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
@@ -47,7 +46,15 @@ alias moon='curl -4 http://wttr.in/Moon'
 # colours for `ls` command
 alias ls='ls -G'
 alias lsa='ls -la'
+alias l="ls -lahS"
+
+#change directory
+alias logs='cd /var/log/ && ls'
+alias ..='cd ..'
+alias ....='cd ../..'
+alias .......='cd ../../..'
 
 # webapps
 alias milk="open -na 'Google Chrome' --args '--app=https://www.rememberthemilk.com/app '"
+alias simplenote="open -na 'Google Chrome' --args '--app=https://app.simplenote.com/ '"
 alias webusb="open -a 'Google Chrome' --args '--disable-webusb-security'"
