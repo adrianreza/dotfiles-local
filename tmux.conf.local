@@ -53,6 +53,10 @@ set -g visual-activity on
 unbind p
 bind p previous-window
 
+# quick pane cycling
+unbind ^A
+bind ^A select-pane -t :.+
+
 # shorten command delay
 set -sg escape-time 1
 
